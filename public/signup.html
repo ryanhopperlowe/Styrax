@@ -29,6 +29,8 @@
         body { border-top: 16px solid #ffa100; }
       }
     </style> -->
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
 
@@ -62,54 +64,54 @@
         <hr>
 
         <!-- Main Form -->
-<div class="login-form-1">
-  <form id="register-form" class="text-left">
-    <div class="login-form-main-message"></div>
-    <div class="main-login-form">
-      <br>
-      <br>
+        <div class="login-form-1">
+          <form id="register-form" class="text-left">
+            <div class="login-form-main-message"></div>
+            <div class="main-login-form">
+              <br>
+              <br>
 
-      <div class="login-group">
-        <div class="form-group">
-          <label for="reg_username" class="sr-only">Email address</label>
-          <input type="text" class="form-control" id="reg_username" name="reg_username" placeholder="username">
-        </div>
-        <div class="form-group">
-          <label for="reg_password" class="sr-only">Password</label>
-          <input type="password" class="form-control" id="reg_password" name="reg_password" placeholder="password">
-        </div>
-        <div class="form-group">
-          <label for="reg_password_confirm" class="sr-only">Password Confirm</label>
-          <input type="password" class="form-control" id="reg_password_confirm" name="reg_password_confirm" placeholder="confirm password">
-        </div>
+              <div class="login-group">
+                <div class="form-group">
+                  <label for="email" class="sr-only">Email</label>
+                  <input type="text" class="form-control" id="email" name="email" placeholder="email">
+                </div>
+                <!-- <div class="form-group">
+                  <label for="username" class="sr-only">Email address</label>
+                  <input type="text" class="form-control" id="username" name="username" placeholder="username">
+                </div> -->
+                <div class="form-group">
+                  <label for="password" class="sr-only">Password</label>
+                  <input type="password" class="form-control" id="password" name="password" placeholder="password">
+                </div>
+                <div class="form-group">
+                  <label for="password_confirm" class="sr-only">Password Confirm</label>
+                  <input type="password" class="form-control" id="password_confirm" name="password_confirm" placeholder="confirm password">
+                </div>
 
-        <div class="form-group">
-          <label for="reg_email" class="sr-only">Email</label>
-          <input type="text" class="form-control" id="reg_email" name="reg_email" placeholder="email">
-        </div>
-        <div class="form-group">
-          <label for="reg_fullname" class="sr-only">Full Name</label>
-          <input type="text" class="form-control" id="reg_fullname" name="reg_fullname" placeholder="full name">
-        </div>
+                <div class="form-group">
+                  <label for="fullname" class="sr-only">Full Name</label>
+                  <input type="text" class="form-control" id="fullname" name="fullname" placeholder="full name">
+                </div>
 
-        <div class="form-group login-group-checkbox">
-          <input type="radio" class="" name="reg_gender" id="male" placeholder="username">
-          <label for="male">male</label>
+                <div class="form-group login-group-checkbox">
+                  <input type="radio" class="" name="gender" id="male" placeholder="username">
+                  <label for="male">male</label>
 
-          <input type="radio" class="" name="reg_gender" id="female" placeholder="username">
-          <label for="female">female</label>
-        </div>
+                  <input type="radio" class="" name="gender" id="female" placeholder="username">
+                  <label for="female">female</label>
+                </div>
 
-        <div class="form-group login-group-checkbox">
-          <input type="checkbox" class="" id="reg_agree" name="reg_agree">
-          <label for="reg_agree">i agree with <a href="#">terms</a></label>
+                <div class="form-group login-group-checkbox">
+                  <input type="checkbox" class="" id="agree" name="agree">
+                  <label for="agree">i agree with <a href="#">terms</a></label>
+                </div>
+              </div>
+              <button type="submit" class="login-button">Sign Up<i class="fa fa-chevron-right"></i></button>
+            </div>
+          </form>
         </div>
-      </div>
-      <button type="submit" class="login-button">Sign Up<i class="fa fa-chevron-right"></i></button>
-    </div>
-  </form>
-</div>
-<!-- end:Main Form -->
+        <!-- end:Main Form -->
 
       </div>
     </div>
@@ -123,28 +125,10 @@
     </div>
      <p id="load">Firebase SDK Loading&hellip;</p> -->
 
+
+    <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
+    <script type="text/javascript" src="./js/firebase.js"></script>
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-
-        try {
-          let app = firebase.app();
-          let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
-          document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
-
         /**
        * Handles the sign up button press.
        */
