@@ -107,7 +107,7 @@
                   <label for="agree">i agree with <a href="#">terms</a></label>
                 </div>
               </div>
-              <button type="submit" class="login-button">Sign Up<i class="fa fa-chevron-right"></i></button>
+              <button type="submit" onclick="handleSignUp()" class="login-button">Sign Up<i class="fa fa-chevron-right"></i></button>
             </div>
           </form>
         </div>
@@ -135,6 +135,7 @@
       function handleSignUp() {
         var email = document.getElementById('email').value;
         var password = document.getElementById('password').value;
+        console.log(document.getElementById('email'));
         if (email.length < 4) {
           alert('Please enter an email address.');
           return;
