@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+    <title>Sign Up</title>
 
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/5.8.6/firebase-app.js"></script>
@@ -50,13 +50,7 @@
 
             <ul class="nav navbar-nav navbar-right">
               <li>
-                <a href="signup.html">Sign Up</a>
-              </li>
-              <li>
                 <a href=""><i class="glyphicon glyphicon-user"></i> Login</a>
-              </li>
-              <li>
-                <a href=""><i class="glyphicon glyphicon-user"></i> Logout</a>
               </li>
               <li>
                 <a href=""><i class="glyphicon glyphicon-shopping-cart"></i></a>
@@ -67,24 +61,55 @@
 
         <hr>
 
-        <div class="row container">
-          <br><br>
-          <ul class="nav nav-tabs nav-justified">
-            <li role="presentation" class="active"><a href="#">All Products</a></li>
-            <li role="presentation"><a href="#">History</a></li>
-          </ul>
+        <!-- Main Form -->
+<div class="login-form-1">
+  <form id="register-form" class="text-left">
+    <div class="login-form-main-message"></div>
+    <div class="main-login-form">
+      <br>
+      <br>
 
-          <br>
-
-          <div class="col-lg-2"></div>
-          <div class="col-lg-8">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search...">
-              <span class="input-group-addon" id="basicaddon1"><i class="glyphicon glyphicon-search"></i></span>
-            </div>
-          </div>
-          <div class="col-lg-2"></div>
+      <div class="login-group">
+        <div class="form-group">
+          <label for="reg_username" class="sr-only">Email address</label>
+          <input type="text" class="form-control" id="reg_username" name="reg_username" placeholder="username">
         </div>
+        <div class="form-group">
+          <label for="reg_password" class="sr-only">Password</label>
+          <input type="password" class="form-control" id="reg_password" name="reg_password" placeholder="password">
+        </div>
+        <div class="form-group">
+          <label for="reg_password_confirm" class="sr-only">Password Confirm</label>
+          <input type="password" class="form-control" id="reg_password_confirm" name="reg_password_confirm" placeholder="confirm password">
+        </div>
+
+        <div class="form-group">
+          <label for="reg_email" class="sr-only">Email</label>
+          <input type="text" class="form-control" id="reg_email" name="reg_email" placeholder="email">
+        </div>
+        <div class="form-group">
+          <label for="reg_fullname" class="sr-only">Full Name</label>
+          <input type="text" class="form-control" id="reg_fullname" name="reg_fullname" placeholder="full name">
+        </div>
+
+        <div class="form-group login-group-checkbox">
+          <input type="radio" class="" name="reg_gender" id="male" placeholder="username">
+          <label for="male">male</label>
+
+          <input type="radio" class="" name="reg_gender" id="female" placeholder="username">
+          <label for="female">female</label>
+        </div>
+
+        <div class="form-group login-group-checkbox">
+          <input type="checkbox" class="" id="reg_agree" name="reg_agree">
+          <label for="reg_agree">i agree with <a href="#">terms</a></label>
+        </div>
+      </div>
+      <button type="submit" class="login-button">Sign Up<i class="fa fa-chevron-right"></i></button>
+    </div>
+  </form>
+</div>
+<!-- end:Main Form -->
 
       </div>
     </div>
@@ -119,6 +144,52 @@
           document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
         }
       });
+
+        /**
+       * Handles the sign up button press.
+       */
+      function handleSignUp() {
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+        if (email.length < 4) {
+          alert('Please enter an email address.');
+          return;
+        }
+        if (password.length < 4) {
+          alert('Please enter a password.');
+          return;
+        }
+        // Sign in with email and pass.
+        // [START createwithemail]
+        firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          // [START_EXCLUDE]
+          if (errorCode == 'auth/weak-password') {
+            alert('The password is too weak.');
+          } else {
+            alert(errorMessage);
+          }
+          console.log(error);
+          // [END_EXCLUDE]
+        });
+        // [END createwithemail]
+      }
+      /**
+       * Sends an email verification to the user.
+       */
+      function sendEmailVerification() {
+        // [START sendemailverification]
+        firebase.auth().currentUser.sendEmailVerification().then(function() {
+          // Email Verification sent!
+          // [START_EXCLUDE]
+          alert('Email Verification Sent!');
+          // [END_EXCLUDE]
+        });
+        // [END sendemailverification]
+      }
+
     </script>
   </body>
 </html>
