@@ -31,6 +31,8 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
+var loggedIn = false;
+
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     // User is signed in.
@@ -61,7 +63,9 @@ function handleSignUp() {
   }
   // Sign in with email and pass.
   // [START createwithemail]
-  firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+  firebase.auth().createUserWithEmailAndPassword(email, password).then(function() {
+    loggedIn = true;
+  }).catch(function(error) {
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
@@ -83,6 +87,7 @@ function handleLogin() {
 
   firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
     console.log("login successful");
+    loggedIn = true;
     alert("login successful");
   }).catch(function (error) {
     var errorCode = error.code;
@@ -96,6 +101,7 @@ function handleLogin() {
 
 function handleLogout() {
   firebase.auth().signOut().then(function() {
+    loggedIn = false;
     console.log("logout successful");
     alert('logout success');
   }).catch(function(error) {
