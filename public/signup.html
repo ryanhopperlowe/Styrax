@@ -29,6 +29,8 @@
         body { border-top: 16px solid #ffa100; }
       }
     </style> -->
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
 
@@ -63,7 +65,7 @@
 
         <!-- Main Form -->
         <div class="login-form-1">
-          <form id="register-form" class="text-left">
+          <form action="./index.html" method="POST" id="register-form" class="text-left">
             <div class="login-form-main-message"></div>
             <div class="main-login-form">
               <br>
@@ -76,12 +78,12 @@
                   <input type="text" class="form-control" id="reg_fullname" name="reg_fullname" placeholder="full name" required>
                 </div>
                 <div class="form-group">
-                  <label for="email" class="">Email address</label>
-                  <input type="text" class="form-control" id="email" name="email" placeholder="email" required>
+                  <label for="reg_email" class="">Email address</label>
+                  <input type="text" class="form-control" id="reg_email" name="reg_email" placeholder="email" required>
                 </div>
                 <div class="form-group">
-                  <label for="password" class="=">Password</label>
-                  <input type="password" class="form-control" id="password" name="password" placeholder="password" required>
+                  <label for="reg_password" class="=">Password</label>
+                  <input type="password" class="form-control" id="reg_password" name="reg_password" placeholder="password" required>
                 </div>
                 <div class="form-group">
                   <label for="password_confirm" class="">Confirm Password</label>
@@ -111,21 +113,22 @@
       <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
     </div>
      <p id="load">Firebase SDK Loading&hellip;</p> -->
-     <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
-    <script>
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyCvT55qbatIH6Gx8Mn2Ns4Ujx3v2t7RdQA",
-      authDomain: "styrax-47f13.firebaseapp.com",
-      databaseURL: "https://styrax-47f13.firebaseio.com",
-      projectId: "styrax-47f13",
-      storageBucket: "styrax-47f13.appspot.com",
-      messagingSenderId: "524300593780"
-    };
-    firebase.initializeApp(config);
-</script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
+    <script type="text/javascript" src="./js/firebase.js"></script>
+    <!-- <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCvT55qbatIH6Gx8Mn2Ns4Ujx3v2t7RdQA",
+        authDomain: "styrax-47f13.firebaseapp.com",
+        databaseURL: "https://styrax-47f13.firebaseio.com",
+        projectId: "styrax-47f13",
+        storageBucket: "styrax-47f13.appspot.com",
+        messagingSenderId: "524300593780"
+      };
+      firebase.initializeApp(config);
+    </script> -->
 
-<script>
+<!-- <script>
       document.addEventListener('DOMContentLoaded', function() {
         // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
         // // The Firebase SDK is initialized and available here!
@@ -190,6 +193,6 @@
         // [END sendemailverification]
       }
 
-    </script>
+    </script> -->
   </body>
 </html>
