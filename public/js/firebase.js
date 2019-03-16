@@ -32,7 +32,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 firebase.auth().onAuthStateChanged(function(user) {
-  alert(user)
   if (user) {
     // User is signed in.
     var displayName = user.displayName;
