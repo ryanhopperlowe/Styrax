@@ -59,10 +59,45 @@
           </div>
         </nav>
 
-        <hr>
+        <hr><br><br>
+
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+          <div class="panel panel-default">
+            <div class="panel-heading text-center">
+              <h2 class="">Login To Your Styrax Account</h2>
+            </div>
+            <div class="panel-body">
+              <form action="" class="">
+                <div class="form-group">
+                  <label class="" for="email">Email Address</label>
+                  <input type="email" name="email" id="email" class="form-control" value="" placeholder="Email Address" required>
+                </div>
+
+                <div class="form-group">
+                  <label class="" for="password">Password</label>
+                  <input type="password" name="password" id="password" class="form-control" value="" placeholder="Password" required>
+                </div>
+
+                <div class="form-group">
+                  <button class="form-control btn btn-primary" type="submit">Login</button>
+                </div>
+
+                <div class="form-group text-center">
+                  <a href="" class="">Forgot Password?</a>
+                  <br>
+                  <a href="./signup.html">Register</a>
+                </div>
+              </form>
+            </div>
+            <!-- <div class="panel-footer">
+
+            </div> -->
+          </div>
+        </div>
 
         <!-- Main Form -->
-        <div class="login-form-1">
+        <!-- <div class="login-form-1">
           <form id="register-form" class="text-left">
             <div class="login-form-main-message"></div>
             <div class="main-login-form">
@@ -97,7 +132,7 @@
               <a href="./index.html" class="btn btn-secondary">Cancel</a>
             </div>
           </form>
-        </div>
+        </div> -->
         <!-- end:Main Form -->
 
       </div>
@@ -145,6 +180,35 @@
         }
       });
 
+      function handleLogin() {
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;$sceDelegate
+
+        firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+
+        });
+
+        firebase.auth().onAuthStateChanged(function(user) {
+          console.log('state change');
+          if (user) {
+            // User is signed in.
+            var displayName = user.displayName;
+            var email = user.email;
+            var emailVerified = user.emailVerified;
+            var photoURL = user.photoURL;
+            var isAnonymous = user.isAnonymous;
+            var uid = user.uid;
+            var providerData = user.providerData;
+            // ...
+          } else {
+            // User is signed out.
+            // ...
+          }
+        });
+
+      }
 
     </script>
   </body>
