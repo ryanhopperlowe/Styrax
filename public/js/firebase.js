@@ -16,7 +16,13 @@ document.addEventListener('DOMContentLoaded', function() {
   // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
   // // The Firebase SDK is initialized and available here!
   //
-  // firebase.auth().onAuthStateChanged(user => { });
+  firebase.auth().onAuthStateChanged(user => {
+    if (user) {
+      alert(user);
+    } else {
+      alert("not logged in");
+    }
+  });
   // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
   // firebase.messaging().requestPermission().then(() => { });
   // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
@@ -31,28 +37,10 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-var loggedIn = false;
-
-firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-    // User is signed in.
-    var displayName = user.displayName;
-    var email = user.email;
-    var emailVerified = user.emailVerified;
-    var photoURL = user.photoURL;
-    var isAnonymous = user.isAnonymous;
-    var uid = user.uid;
-    var providerData = user.providerData;
-    // ...
-  } else {
-    // User is signed out.
-    // ...
-  }
-});
-
 function handleSignUp() {
-  var email = document.getElementById('reg_email').value;
-  var password = document.getElementById('reg_password').value;
+  let email = document.getElementById('reg_email').value;
+  let password = document.getElementById('reg_password').value;
+
   if (email.length < 4) {
     alert('Please enter an email address.');
     return;
@@ -63,8 +51,8 @@ function handleSignUp() {
   }
   // Sign in with email and pass.
   // [START createwithemail]
-  firebase.auth().createUserWithEmailAndPassword(email, password).then(function() {
-    loggedIn = true;
+  firebase.auth().createUserWithEmailAndPassword(email, password).then(function (user) {
+    var user = firebase.auth().currentUser;
   }).catch(function(error) {
     // Handle Errors here.
     var errorCode = error.code;
@@ -82,8 +70,8 @@ function handleSignUp() {
 }
 
 function handleLogin() {
-  var email = document.getElementById('login_email').value;
-  var password = document.getElementById('login_password').value;
+  let email = document.getElementById('login_email').value;
+  let password = document.getElementById('login_password').value;
 
   firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
     console.log("login successful");
