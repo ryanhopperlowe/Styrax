@@ -6,12 +6,12 @@
     <title>Sign Up</title>
 
     <!-- update the version number as needed -->
-    <script defer src="/__/firebase/5.8.6/firebase-app.js"></script>
+    <script defer src="/__/firebase/5.9.0/firebase-app.js"></script>
     <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/5.8.6/firebase-auth.js"></script>
-    <script defer src="/__/firebase/5.8.6/firebase-database.js"></script>
-    <script defer src="/__/firebase/5.8.6/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/5.8.6/firebase-storage.js"></script>
+    <script defer src="/__/firebase/5.9.0/firebase-auth.js"></script>
+    <script defer src="/__/firebase/5.9.0/firebase-database.js"></script>
+    <script defer src="/__/firebase/5.9.0/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/5.9.0/firebase-storage.js"></script>
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
 
@@ -73,7 +73,7 @@
               <h2 class="">Login To Your Styrax Account</h2>
             </div>
             <div class="panel-body">
-              <form class="" action="./index.html" method="POST">
+              <form class="" onsubmit="handleLogin()" action="" method="POST">
                 <div class="form-group">
                   <label class="" for="login_email">Email Address</label>
                   <input type="email" name="login_email" id="login_email" class="form-control" value="" placeholder="Email Address" required>
@@ -85,7 +85,7 @@
                 </div>
 
                 <div class="form-group">
-                  <button onclick="handleLogin()" class="form-control btn btn-primary" type="submit">Login</button>
+                  <button class="form-control btn btn-primary" type="submit">Login</button>
                 </div>
 
                 <div class="form-group text-center">
@@ -151,7 +151,7 @@
       <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
     </div>
      <p id="load">Firebase SDK Loading&hellip;</p> -->
-    <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
     <script type="text/javascript" src="./js/firebase.js"></script>
     <!-- <script>
       // Initialize Firebase

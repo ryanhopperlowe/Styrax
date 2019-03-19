@@ -2,7 +2,7 @@
 console.log("firebase");
 
 // Initialize Firebase
-var app = {
+var config = {
   apiKey: "AIzaSyCvT55qbatIH6Gx8Mn2Ns4Ujx3v2t7RdQA",
   authDomain: "styrax-47f13.firebaseapp.com",
   databaseURL: "https://styrax-47f13.firebaseio.com",
@@ -10,7 +10,7 @@ var app = {
   storageBucket: "styrax-47f13.appspot.com",
   messagingSenderId: "524300593780"
 };
-firebase.initializeApp(app);
+firebase.initializeApp(config);
 
 document.addEventListener('DOMContentLoaded', function() {
   // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
@@ -18,10 +18,11 @@ document.addEventListener('DOMContentLoaded', function() {
   //
   firebase.auth().onAuthStateChanged(user => {
     if (user) {
-      alert(user);
+      window.alert(user);
     } else {
-      alert("not logged in");
+      console.log("not logged in");
     }
+    window.alert(firebase.auth().currentUser);
   });
   // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
   // firebase.messaging().requestPermission().then(() => { });
@@ -42,11 +43,11 @@ function handleSignUp() {
   let password = document.getElementById('reg_password').value;
 
   if (email.length < 4) {
-    alert('Please enter an email address.');
+    window.alert('Please enter an email address.');
     return;
   }
   if (password.length < 4) {
-    alert('Please enter a password.');
+    window.alert('Please enter a password.');
     return;
   }
   // Sign in with email and pass.
@@ -59,9 +60,9 @@ function handleSignUp() {
     var errorMessage = error.message;
     // [START_EXCLUDE]
     if (errorCode == 'auth/weak-password') {
-      alert('The password is too weak.');
+      window.alert('The password is too weak.');
     } else {
-      alert(errorMessage);
+      window.alert(errorMessage);
     }
     console.log(error);
     // [END_EXCLUDE]
@@ -70,32 +71,34 @@ function handleSignUp() {
 }
 
 function handleLogin() {
+  // window.alert("login run");
   let email = document.getElementById('login_email').value;
   let password = document.getElementById('login_password').value;
 
-  firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
-    console.log("login successful");
-    loggedIn = true;
-    alert("login successful");
-  }).catch(function (error) {
+  firebase.auth().signInWithEmailAndPassword(email, password).then(function(success) {
+    window.alert(success);
+    window.alert("login success");
+  }).catch(function(error) {
+    // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
-    alert('login unsuccessful');
-    alert(errorCode, errorMessage);
-    console.log(errorCode);
-    console.log(errorMessage);
+    if (errorCode === 'auth/wrong-password') {
+      window.alert('Wrong password.');
+    } else {
+      window.alert(errorMessage);
+    }
+    console.log(error);
   });
 }
 
 function handleLogout() {
   firebase.auth().signOut().then(function() {
-    loggedIn = false;
     console.log("logout successful");
-    alert('logout success');
+    window.alert('logout success');
   }).catch(function(error) {
     let errorCode = error.code;
     let errorMessage = error.message;
-    alert('logout failed')
+    window.alert('logout failed')
     console.log(errorCode);
     console.log(errorMessage);
   });
